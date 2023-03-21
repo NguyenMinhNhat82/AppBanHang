@@ -1,0 +1,4 @@
+module-info.class
+com\mycompany\appbanhang\App.class
+com\mycompany\appbanhang\SecondaryController.class
+com\mycompany\appbanhang\PrimaryController.class
