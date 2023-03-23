@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.appbanhang.KhachHangController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="857.0" style="-fx-background-color: #00CCCC;">
          <menus>
@@ -96,10 +96,12 @@
       </HBox>
       <HBox prefHeight="348.0" prefWidth="859.0">
          <children>
-            <TableView prefHeight="300.0" prefWidth="858.0">
+            <TableView fx:id="listKhachHang" prefHeight="300.0" prefWidth="858.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="MaKhach" prefWidth="95.0" text="Mã khách hàng" />
+                  <TableColumn fx:id="TenKhach" prefWidth="331.0" text="Tên khách hàng" />
+                  <TableColumn fx:id="DiaChi" prefWidth="280.0" text="Địa chỉ" />
+                  <TableColumn fx:id="DienThoai" prefWidth="150.0" text="Số điện thoại" />
                </columns>
             </TableView>
          </children>

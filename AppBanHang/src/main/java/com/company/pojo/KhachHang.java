@@ -9,15 +9,15 @@ package com.company.pojo;
  * @author DELL
  */
 public class KhachHang {
-    private String maKH;
-    private String TenKhachhang;
+    private String MaKhach;
+    private String TenKhach;
     private String DiaChi;
     private String DienThoai;
     public KhachHang(){} 
 
     public KhachHang(String maKH, String TenKhachhang, String DiaChi, String DienThoai) {
-        this.maKH = maKH;
-        this.TenKhachhang = TenKhachhang;
+        this.MaKhach = maKH;
+        this.TenKhach = TenKhachhang;
         this.DiaChi = DiaChi;
         this.DienThoai = DienThoai;
     }
@@ -27,8 +27,8 @@ public class KhachHang {
     /**
      * @return the maKH
      */
-    public String getMaKH() {
-        return maKH;
+    public String getMaKhach() {
+        return MaKhach;
     }
 
     /**
@@ -38,15 +38,15 @@ public class KhachHang {
     /**
      * @return the TenKhachhang
      */
-    public String getTenKhachhang() {
-        return TenKhachhang;
+    public String getTenKhach() {
+        return TenKhach;
     }
 
     /**
      * @param TenKhachhang the TenKhachhang to set
      */
     public void setTenKhachhang(String TenKhachhang) {
-        this.TenKhachhang = TenKhachhang;
+        this.TenKhach = TenKhachhang;
     }
 
     /**

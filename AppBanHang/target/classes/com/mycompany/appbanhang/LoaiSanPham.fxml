@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.appbanhang.LoaiSanPhamController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="857.0" style="-fx-background-color: #00CCCC;">
          <menus>
@@ -82,10 +82,10 @@
             </Pane>
          </children>
       </HBox>
-      <TableView prefHeight="335.0" prefWidth="857.0">
+      <TableView fx:id="listLoaiSanPham" prefHeight="335.0" prefWidth="857.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="MaLoaiSanPham" prefWidth="127.0" text="Mã loại sản phẩm" />
+            <TableColumn fx:id="TenLoaiSanPham" prefWidth="729.0" text="Tên loại sản phẩm" />
          </columns>
       </TableView>
       <HBox prefHeight="80.0" prefWidth="859.0">

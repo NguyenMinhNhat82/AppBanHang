@@ -14,7 +14,7 @@ public class Hang {
      * @return the maHang
      */
     public String getMaHang() {
-        return maHang;
+        return MaHang;
     }
 
     /**
@@ -63,14 +63,14 @@ public class Hang {
      * @return the donGiaNhap
      */
     public double getDonGiaNhap() {
-        return donGiaNhap;
+        return DonGiaNhap;
     }
 
     /**
      * @param donGiaNhap the donGiaNhap to set
      */
     public void setDonGiaNhap(double donGiaNhap) {
-        this.donGiaNhap = donGiaNhap;
+        this.DonGiaNhap = donGiaNhap;
     }
 
     /**
@@ -118,55 +118,55 @@ public class Hang {
     /**
      * @return the IDKhuyenMai
      */
-    public int getIDKhuyenMai() {
-        return IDKhuyenMai;
+    public int getIdKhuyenMai() {
+        return IdKhuyenMai;
     }
 
     /**
      * @param IDKhuyenMai the IDKhuyenMai to set
      */
-    public void setIDKhuyenMai(int IDKhuyenMai) {
-        this.IDKhuyenMai = IDKhuyenMai;
+    public void setIdKhuyenMai(int IDKhuyenMai) {
+        this.IdKhuyenMai = IDKhuyenMai;
     }
 
     /**
      * @return the IDDonViTinh
      */
-    public int getIDDonViTinh() {
-        return IDDonViTinh;
+    public int getDonViTinh() {
+        return DonViTinh;
     }
 
     /**
      * @param IDDonViTinh the IDDonViTinh to set
      */
-    public void setIDDonViTinh(int IDDonViTinh) {
-        this.IDDonViTinh = IDDonViTinh;
+    public void setDonViTinh(int IDDonViTinh) {
+        this.DonViTinh = IDDonViTinh;
     }
-    private String maHang;
+    private String MaHang;
     private String TenHang;
     private String MaLoaiSanPham;
     private double SoLuong;
-    private double donGiaNhap;
+    private double DonGiaNhap;
     private double DonGiaBan;
     private String Anh;
     private String GhiChu;
-    private int IDKhuyenMai;
-    private int  IDDonViTinh;
+    private int IdKhuyenMai;
+    private int  DonViTinh;
 
     public Hang() {
     }
 
     public Hang(String maHang, String TenHang, String MaLoaiSanPham, double SoLuong, double donGiaNhap, double DonGiaBan, String Anh, String GhiChu, int IDKhuyenMai, int IDDonViTinh) {
-        this.maHang = maHang;
+        this.MaHang = maHang;
         this.TenHang = TenHang;
         this.MaLoaiSanPham = MaLoaiSanPham;
         this.SoLuong = SoLuong;
-        this.donGiaNhap = donGiaNhap;
+        this.DonGiaNhap = donGiaNhap;
         this.DonGiaBan = DonGiaBan;
         this.Anh = Anh;
         this.GhiChu = GhiChu;
-        this.IDKhuyenMai = IDKhuyenMai;
-        this.IDDonViTinh = IDDonViTinh;
+        this.IdKhuyenMai = IDKhuyenMai;
+        this.DonViTinh = IDDonViTinh;
     }
     
     

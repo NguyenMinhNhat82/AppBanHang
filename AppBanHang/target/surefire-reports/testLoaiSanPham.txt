@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: testLoaiSanPham
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.84 sec <<< FAILURE! - in testLoaiSanPham
+testLoaiSanPham.testGetLoaiSanPham()  Time elapsed: 0.838 sec  <<< FAILURE!
+java.lang.NoSuchMethodError: 'java.lang.String com.company.pojo.LoaiSanPham.getIDLoaiSP()'
+	at testLoaiSanPham.testGetLoaiSanPham(testLoaiSanPham.java:43)
+

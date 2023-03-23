@@ -9,36 +9,31 @@ package com.company.pojo;
  * @author DELL
  */
 public class LoaiSanPham {
-
+    
+    private String MaLoaiSanPham;
+    private String TenLoaiSanPham;
     /**
      * @return the IDLoaiSP
      */
-    public String getIDLoaiSP() {
-        return IDLoaiSP;
+    public String getMaLoaiSanPham() {
+        return MaLoaiSanPham;
     }
 
-    /**
-     * @return the TenLoaiSP
-     */
-    public String getTenLoaiSP() {
-        return TenLoaiSP;
+    public String getTenLoaiSanPham() {
+        return TenLoaiSanPham;
     }
 
-    /**
-     * @param TenLoaiSP the TenLoaiSP to set
-     */
-    public void setTenLoaiSP(String TenLoaiSP) {
-        this.TenLoaiSP = TenLoaiSP;
+
+    public void setTenLoaiSanPham(String TenLoaiSanPham) {
+        this.TenLoaiSanPham = TenLoaiSanPham;
     }
-    private String IDLoaiSP;
-    private String TenLoaiSP;
+  
 
     public LoaiSanPham() {
     }
 
-    public LoaiSanPham(String IDLoaiSP, String TenLoaiSP) {
-        this.IDLoaiSP = IDLoaiSP;
-        this.TenLoaiSP = TenLoaiSP;
-    }
-     
+    public LoaiSanPham(String MaLoaiSanPham, String TenLoaiSanPham) {
+        this.MaLoaiSanPham = MaLoaiSanPham;
+        this.TenLoaiSanPham = TenLoaiSanPham;
+    }     
 }
