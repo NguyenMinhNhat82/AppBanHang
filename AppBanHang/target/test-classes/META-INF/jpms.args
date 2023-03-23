@@ -1,0 +1,4 @@
+--patch-module
+com.mycompany.appbanhang=_
+--add-reads
+com.mycompany.appbanhang=ALL-UNNAMED

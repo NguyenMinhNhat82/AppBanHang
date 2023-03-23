@@ -1,0 +1,6 @@
+# Created at 2023-03-23T14:52:50.486
+Error: Could not find or load main class tính\AppBanHang\AppBanHang\target\classes;C:\Users\DELL\.m2\repository\org\openjfx\javafx-controls\13\javafx-controls-13-win.jar;C:\Users\DELL\.m2\repository\org\openjfx\javafx-graphics\13\javafx-graphics-13-win.jar;C:\Users\DELL\.m2\repository\org\openjfx\javafx-base\13\javafx-base-13-win.jar;C:\Users\DELL\.m2\repository\org\openjfx\javafx-fxml\13\javafx-fxml-13-win.jar
+
+# Created at 2023-03-23T14:52:50.487
+Caused by: java.lang.ClassNotFoundException: tính\AppBanHang\AppBanHang\target\classes;C:\Users\DELL\/m2\repository\org\openjfx\javafx-controls\13\javafx-controls-13-win/jar;C:\Users\DELL\/m2\repository\org\openjfx\javafx-graphics\13\javafx-graphics-13-win/jar;C:\Users\DELL\/m2\repository\org\openjfx\javafx-base\13\javafx-base-13-win/jar;C:\Users\DELL\/m2\repository\org\openjfx\javafx-fxml\13\javafx-fxml-13-win/jar
+

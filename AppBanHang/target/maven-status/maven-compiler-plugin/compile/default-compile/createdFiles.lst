@@ -1,4 +1,14 @@
+com\company\pojo\Hang.class
+com\company\pojo\LoaiSanPham.class
+com\company\pojo\KhachHang.class
 module-info.class
 com\mycompany\appbanhang\App.class
 com\mycompany\appbanhang\SecondaryController.class
+com\company\pojo\ChiTietHoaDonBan.class
+com\company\pojo\HoaDonBan.class
+com\company\pojo\KhuyenMai.class
+com\company\pojo\ChiNhanh.class
+com\company\conf\JdbcUtils.class
+com\company\pojo\DonViTinh.class
 com\mycompany\appbanhang\PrimaryController.class
+com\company\pojo\NhanVien.class
