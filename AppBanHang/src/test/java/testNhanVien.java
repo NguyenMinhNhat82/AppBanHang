@@ -3,11 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import com.company.conf.JdbcUtils;
+import com.company.pojo.ChiNhanh;
+import com.company.pojo.NhanVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
@@ -38,17 +42,20 @@ public class testNhanVien {
     }
     @Test
     public void testGetStaff() throws SQLException{
-         try {
-            cnn = JdbcUtils.getConn();
-        } catch (SQLException ex) {
-            Logger.getLogger(testNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+       List<NhanVien> listNhanVien = new ArrayList<>();
+         try ( Connection conn = JdbcUtils.getConn()) {           
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM tblnhanvien");
+            while (rs.next()) {
+                NhanVien n = new NhanVien(rs.getString("MaNhanVien"), rs.getString("TenNhanVien"),rs.getString("GioiTinh"),rs.getString("DiaChi"),rs.getString("DienThoai"),rs.getDate("NgaySinh"),rs.getInt("idChiNhanh"),rs.getString("Password"));
+                listNhanVien.add(n);
+            }
         }
-        PreparedStatement stm = cnn.prepareCall("Select * from tblnhanvien where MaNhanVien = ? and Password = ?");            
-            stm.setString(1, "NV1");
-            stm.setString(2, "123");
-            ResultSet rs = stm.executeQuery();
-        
-        Assertions.assertTrue(rs.next());
+         for(NhanVien i : listNhanVien){
+             System.out.println(i.getTenNV());
+         }
           
     }
+    
+
 }

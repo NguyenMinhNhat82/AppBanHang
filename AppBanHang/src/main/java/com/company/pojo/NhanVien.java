@@ -109,11 +109,11 @@ public class NhanVien {
     private String DienThoai;
     private Date NgaySinh;
     private int IDChiNhanh;
+    private String Password;
 
-    public NhanVien() {
-    }
 
-    public NhanVien(String MaNV, String TenNV, String GioiTinh, String DiaChi, String DienThoai, Date NgaySinh, int IDChiNhanh) {
+
+    public NhanVien(String MaNV, String TenNV, String GioiTinh, String DiaChi, String DienThoai, Date NgaySinh, int IDChiNhanh, String pass) {
         this.MaNV = MaNV;
         this.TenNV = TenNV;
         this.GioiTinh = GioiTinh;
@@ -121,6 +121,8 @@ public class NhanVien {
         this.DienThoai = DienThoai;
         this.NgaySinh = NgaySinh;
         this.IDChiNhanh = IDChiNhanh;
+        this.Password = pass;
+        
     }
     
     
