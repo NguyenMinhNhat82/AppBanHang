@@ -6,6 +6,7 @@ package com.mycompany.appbanhang;
 
 import com.company.pojo.KhachHang;
 import com.company.service.KhachHangService;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -40,7 +41,31 @@ public class KhachHangController implements Initializable {
     @FXML
     private TableColumn<KhachHang, String> DienThoai;
 
-   
+   @FXML
+    private void switchToChiNhanh() throws IOException, SQLException {
+        App.setRoot("ChiNhanh");
+    }
+
+    @FXML
+    private void switchToKhachHang() throws IOException, SQLException {
+        App.setRoot("KhachHang");
+    }
+
+    @FXML
+    private void switchToLoaiSanPham() throws IOException, SQLException {
+        App.setRoot("LoaiSanPham");
+    }
+
+    @FXML
+    private void switchToNhanVien() throws IOException, SQLException {
+        App.setRoot("NhanVien");
+    }
+
+    @FXML
+    private void switchToSanPham() throws IOException, SQLException {
+        App.setRoot("SanPham");
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {

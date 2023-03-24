@@ -41,8 +41,13 @@ public class ChiNhanh {
     public void setDiaChi(String DiaChi) {
         this.DiaChi = DiaChi;
     }
-    
 
+    @Override
+    public String toString() {
+        return this.DiaChi;
+    }
+    
+    
     private int id;
     private String DiaChi;
 

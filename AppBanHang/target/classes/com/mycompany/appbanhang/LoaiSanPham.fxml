@@ -19,11 +19,11 @@
          <menus>
             <Menu mnemonicParsing="false" text="Danh mục">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Loại sản phẩm" />
-                  <MenuItem mnemonicParsing="false" text="Nhân Viên" />
-                  <MenuItem mnemonicParsing="false" text="Khách Hàng" />
-                  <MenuItem mnemonicParsing="false" text="Sản phẩm" />
-                  <MenuItem mnemonicParsing="false" text="Chi nhánh" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToLoaiSanPham" text="Loại sản phẩm" />
+                  <MenuItem mnemonicParsing="false" onMenuValidation="#switchToNhanVien" text="Nhân Viên" />
+                  <MenuItem mnemonicParsing="false" onMenuValidation="#switchToKhachHang" text="Khách Hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToSanPham" text="Sản phẩm" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToChiNhanh" text="Chi nhánh" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Hóa đơn">

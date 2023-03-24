@@ -6,6 +6,7 @@ package com.mycompany.appbanhang;
 
 import com.company.pojo.Hang;
 import com.company.service.SanPhamService;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -58,6 +59,30 @@ public class SanPhamController implements Initializable{
     @FXML
     private TableColumn<Hang, Integer> DonViTinh;
 
+    @FXML
+    private void switchToChiNhanh() throws IOException, SQLException {
+        App.setRoot("ChiNhanh");
+    }
+
+    @FXML
+    private void switchToKhachHang() throws IOException, SQLException {
+        App.setRoot("KhachHang");
+    }
+
+    @FXML
+    private void switchToLoaiSanPham() throws IOException, SQLException {
+        App.setRoot("LoaiSanPham");
+    }
+
+    @FXML
+    private void switchToNhanVien() throws IOException, SQLException {
+        App.setRoot("NhanVien");
+    }
+
+    @FXML
+    private void switchToSanPham() throws IOException, SQLException {
+        App.setRoot("SanPham");
+    }
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {

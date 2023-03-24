@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 import com.company.conf.JdbcUtils;
 import com.company.pojo.ChiNhanh;
 import com.company.pojo.NhanVien;
+import com.company.service.NhanVienService;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +58,7 @@ public class testNhanVien {
          }
           
     }
+    
     
 
 }
