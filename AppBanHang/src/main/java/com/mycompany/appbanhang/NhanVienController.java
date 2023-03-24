@@ -167,6 +167,7 @@ public class NhanVienController implements Initializable {
     }
     
     public void addNhanVien() throws IOException{
+        String sdt = this.SoDienThoaihText.getText();
         String name = this.nameNhanVien.getText();
         String GioiTinh = this.GioiTinhText.getText();
         String DiaChi = this.DiaChiText.getText();
@@ -177,7 +178,7 @@ public class NhanVienController implements Initializable {
         
         NhanVienService s = new NhanVienService();
         try {
-            s.addNhanVien(name, GioiTinh, DiaChi, name, NgaySinh, idChiNhanh);
+            s.addNhanVien(name, GioiTinh, DiaChi, sdt, NgaySinh, idChiNhanh);
             MessageBox.getBox("Question", "Thêm nhân viên thành công!!!", 
                     Alert.AlertType.INFORMATION).show();
         } catch (SQLException ex) {
