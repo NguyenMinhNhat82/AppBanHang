@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.appbanhang;
-
 import com.company.pojo.LoaiSanPham;
 import com.company.service.LoaiSanPhamService;
+import com.company.utils.MessageBox;
+import java.io.IOException;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -16,8 +17,10 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -35,6 +38,12 @@ public class LoaiSanPhamController implements Initializable{
     @FXML
     private TableColumn<LoaiSanPham, String> TenLoaiSanPham;
     
+    @FXML
+    private TextField idLoaiSPText;
+    
+    @FXML
+    private TextField TenLoaiSPText;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -46,5 +55,29 @@ public class LoaiSanPhamController implements Initializable{
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
    
+    }
+    
+    public void SeacrhProductTypeByID() throws SQLException {
+        this.TenLoaiSPText.setText("");
+        String idLoaiSP = this.idLoaiSPText.getText();
+        List<LoaiSanPham> LoaiSP = LoaiSanPhamService.GetLoaiSanPhamByID(idLoaiSP);
+        this.MaLoaiSanPham.setCellValueFactory(new PropertyValueFactory<LoaiSanPham, String>("MaLoaiSanPham"));
+        this.TenLoaiSanPham.setCellValueFactory(new PropertyValueFactory<LoaiSanPham, String>("TenLoaiSanPham"));
+        this.listLoaiSanPham.setItems(FXCollections.observableArrayList(LoaiSP));
+    }
+    
+    public void addLoaiSanPham() throws IOException{
+        String name = this.TenLoaiSPText.getText();
+        LoaiSanPhamService s = new LoaiSanPhamService();
+        try {
+            s.addLoaiSanPham(name);
+            MessageBox.getBox("Question", "Thêm loại sản phẩm thành công!!!", 
+                    Alert.AlertType.INFORMATION).show();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+            MessageBox.getBox("Question", "Thêm loại sản phẩm thất bại!!!", 
+                    Alert.AlertType.ERROR).show();
+        }
+        App.setRoot("LoaiSanPham");
     }
 }

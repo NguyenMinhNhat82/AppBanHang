@@ -76,8 +76,8 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="118.0" layoutY="2.0" prefHeight="25.0" prefWidth="126.0" />
-                  <TextField layoutX="118.0" layoutY="36.0" prefHeight="25.0" prefWidth="248.0" />
+                  <TextField fx:id="MaHangText" layoutX="118.0" layoutY="2.0" prefHeight="25.0" prefWidth="126.0" />
+                  <TextField fx:id="TenHangText" layoutX="118.0" layoutY="36.0" prefHeight="25.0" prefWidth="248.0" />
                   <Label layoutX="14.0" layoutY="75.0" text="Loại sản phẩm">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
@@ -103,10 +103,10 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="118.0" layoutY="70.0" prefHeight="25.0" prefWidth="248.0" />
-                  <TextField layoutX="517.0" layoutY="2.0" prefHeight="25.0" prefWidth="216.0" />
-                  <TextField layoutX="517.0" layoutY="36.0" prefHeight="25.0" prefWidth="216.0" />
-                  <TextField layoutX="517.0" layoutY="102.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="MaLoaiSanPhamText" layoutX="118.0" layoutY="70.0" prefHeight="25.0" prefWidth="248.0" />
+                  <TextField fx:id="DongiaNhapText" layoutX="517.0" layoutY="2.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="DonGiaBanText" layoutX="517.0" layoutY="36.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="IdKhuyenMaiText" layoutX="517.0" layoutY="102.0" prefHeight="25.0" prefWidth="216.0" />
                   <Label layoutX="14.0" layoutY="107.0" text="Số lượng">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
@@ -117,15 +117,25 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="118.0" layoutY="103.0" prefHeight="25.0" prefWidth="126.0" />
-                  <TextField layoutX="118.0" layoutY="137.0" prefHeight="25.0" prefWidth="248.0" />
+                  <TextField fx:id="SoLuongText" layoutX="118.0" layoutY="103.0" prefHeight="25.0" prefWidth="126.0" />
+                  <TextField fx:id="AnhText" layoutX="118.0" layoutY="137.0" prefHeight="25.0" prefWidth="248.0" />
                   <Label layoutX="428.0" layoutY="142.0" text="Ghi chú">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="517.0" layoutY="137.0" prefHeight="25.0" prefWidth="333.0" />
-                  <TextField layoutX="517.0" layoutY="71.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="GhiChuText" layoutX="517.0" layoutY="137.0" prefHeight="25.0" prefWidth="333.0" />
+                  <TextField fx:id="DonViTinhText" layoutX="517.0" layoutY="71.0" prefHeight="25.0" prefWidth="216.0" />
+                  <Button layoutX="242.0" layoutY="2.0" mnemonicParsing="false" onAction="#SeacrhStaffByID" prefHeight="25.0" prefWidth="45.0" text="Tìm">
+                     <font>
+                        <Font name="Arial Bold" size="11.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="364.0" layoutY="36.0" mnemonicParsing="false" onAction="#SeacrhStaffByName" prefHeight="25.0" prefWidth="45.0" text="Tìm">
+                     <font>
+                        <Font name="Arial Bold" size="11.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
@@ -172,7 +182,7 @@
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="408.0" layoutY="18.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" text="Thêm">
+                  <Button layoutX="408.0" layoutY="18.0" mnemonicParsing="false" onAction="#addSanPham" prefHeight="27.0" prefWidth="67.0" text="Thêm">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>

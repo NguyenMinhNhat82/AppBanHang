@@ -68,7 +68,8 @@ public class NhanVienService {
             }
             return listNhanVien;
     }
-    }public static List<NhanVien> GetNhanVienByName(String Name) throws SQLException{
+    }
+    public static List<NhanVien> GetNhanVienByName(String Name) throws SQLException{
         List<NhanVien> listNhanVien = new ArrayList<>();
         try (Connection conn = JdbcUtils.getConn()) {
             String sql = "SELECT * FROM tblnhanvien";

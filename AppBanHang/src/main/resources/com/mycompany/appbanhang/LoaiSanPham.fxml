@@ -76,8 +76,13 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="181.0" layoutY="18.0" />
-                  <TextField layoutX="181.0" layoutY="54.0" prefHeight="25.0" prefWidth="317.0" />
+                  <TextField fx:id="idLoaiSPText" layoutX="181.0" layoutY="18.0" />
+                  <TextField fx:id="TenLoaiSPText" layoutX="181.0" layoutY="54.0" prefHeight="25.0" prefWidth="317.0" />
+                  <Button layoutX="340.0" layoutY="17.0" mnemonicParsing="false" onAction="#SeacrhProductTypeByID" prefHeight="16.0" prefWidth="60.0" text="Tìm">
+                     <font>
+                        <Font name="Arial Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
@@ -92,7 +97,7 @@
          <children>
             <Pane prefHeight="80.0" prefWidth="858.0">
                <children>
-                  <Button layoutX="440.0" layoutY="28.0" mnemonicParsing="false" text="Thêm">
+                  <Button layoutX="440.0" layoutY="28.0" mnemonicParsing="false" onAction="#addLoaiSanPham" text="Thêm">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>

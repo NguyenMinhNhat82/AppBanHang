@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -76,8 +77,13 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="181.0" layoutY="18.0" />
-                  <TextField layoutX="181.0" layoutY="54.0" prefHeight="25.0" prefWidth="491.0" />
+                  <TextField fx:id="idChiNhanhText" layoutX="181.0" layoutY="18.0" />
+                  <TextField fx:id="TenChiNhanhText" layoutX="181.0" layoutY="54.0" prefHeight="25.0" prefWidth="491.0" />
+                  <Button layoutX="339.0" layoutY="17.0" mnemonicParsing="false" onAction="#SeacrhStaffByID" prefHeight="16.0" prefWidth="47.0" text="Tìm">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
@@ -92,7 +98,7 @@
          <children>
             <Pane prefHeight="80.0" prefWidth="858.0">
                <children>
-                  <Button layoutX="440.0" layoutY="28.0" mnemonicParsing="false" text="Thêm">
+                  <Button layoutX="440.0" layoutY="28.0" mnemonicParsing="false" onAction="#addChiNhanh" text="Thêm">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>
@@ -121,5 +127,6 @@
             </Pane>
          </children>
       </HBox>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </FlowPane>

@@ -76,8 +76,8 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="125.0" layoutY="2.0" prefHeight="25.0" prefWidth="126.0" />
-                  <TextField layoutX="127.0" layoutY="44.0" prefHeight="25.0" prefWidth="248.0" />
+                  <TextField fx:id="MaKhachHang" layoutX="125.0" layoutY="2.0" prefHeight="25.0" prefWidth="126.0" />
+                  <TextField fx:id="TenKhachHang" layoutX="127.0" layoutY="44.0" prefHeight="25.0" prefWidth="248.0" />
                   <Label layoutX="11.0" layoutY="47.0" text="Tên khách hàng">
                      <font>
                         <Font name="Arial Bold" size="14.0" />
@@ -88,8 +88,18 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="517.0" layoutY="2.0" prefHeight="25.0" prefWidth="333.0" />
-                  <TextField layoutX="517.0" layoutY="44.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="DiaChiText" layoutX="517.0" layoutY="2.0" prefHeight="25.0" prefWidth="333.0" />
+                  <TextField fx:id="DienThoaiText" layoutX="517.0" layoutY="44.0" prefHeight="25.0" prefWidth="216.0" />
+                  <Button layoutX="375.0" layoutY="43.0" mnemonicParsing="false" onAction="#SeacrhCustomerByName" prefHeight="25.0" prefWidth="39.0" text="Tìm">
+                     <font>
+                        <Font name="Arial Bold" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="251.0" layoutY="2.0" mnemonicParsing="false" onAction="#SeacrhCustomerByID" prefHeight="25.0" prefWidth="39.0" text="Tìm">
+                     <font>
+                        <Font name="Arial Bold" size="10.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
@@ -130,7 +140,7 @@
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="408.0" layoutY="18.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="67.0" text="Thêm">
+                  <Button layoutX="408.0" layoutY="18.0" mnemonicParsing="false" onAction="#addKhachHang" prefHeight="27.0" prefWidth="67.0" text="Thêm">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>

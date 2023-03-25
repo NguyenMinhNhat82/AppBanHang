@@ -21,7 +21,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Danh mục">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#switchToSanPham" text="Loại sản phẩm" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToLoaiSanPham" text="Loại sản phẩm" />
                   <MenuItem mnemonicParsing="false" onAction="#switchToNhanVien" text="Nhân Viên" />
                   <MenuItem mnemonicParsing="false" onAction="#switchToKhachHang" text="Khách Hàng" />
                   <MenuItem mnemonicParsing="false" onAction="#switchToSanPham" text="Sản phẩm" />
@@ -109,12 +109,12 @@
                   <TextField fx:id="DiaChiText" layoutX="517.0" layoutY="2.0" prefHeight="25.0" prefWidth="333.0" />
                   <TextField fx:id="SoDienThoaihText" layoutX="517.0" layoutY="44.0" prefHeight="25.0" prefWidth="216.0" />
                   <DatePicker fx:id="NgaySinhText" layoutX="517.0" layoutY="82.0" prefHeight="25.0" prefWidth="216.0" />
-                  <Button fx:id="SeachByID" layoutX="333.0" layoutY="-6.0" mnemonicParsing="false" onAction="#SeacrhStaffByID" prefHeight="27.0" prefWidth="67.0" text="Tìm">
+                  <Button fx:id="SeachByID" layoutX="254.0" layoutY="1.0" mnemonicParsing="false" onAction="#SeacrhStaffByID" prefHeight="10.0" prefWidth="67.0" text="Tìm">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SearchByName" layoutX="333.0" layoutY="42.0" mnemonicParsing="false" onAction="#SeacrhStaffByName" prefHeight="27.0" prefWidth="67.0" text="Tìm">
+                  <Button fx:id="SearchByName" layoutX="321.0" layoutY="42.0" mnemonicParsing="false" onAction="#SeacrhStaffByName" prefHeight="27.0" prefWidth="67.0" text="Tìm">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>

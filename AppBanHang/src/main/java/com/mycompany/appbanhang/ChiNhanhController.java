@@ -6,10 +6,15 @@ package com.mycompany.appbanhang;
 
 import com.company.pojo.ChiNhanh;
 import com.company.service.ChiNhanhService;
+import com.company.utils.MessageBox;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale.Category;
 import java.util.ResourceBundle;
@@ -20,8 +25,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -38,6 +45,12 @@ public class ChiNhanhController implements Initializable{
 
     @FXML
     private TableColumn<ChiNhanh, String> diachi;
+
+    @FXML
+    private TextField idChiNhanhText;
+    
+    @FXML
+    private TextField TenChiNhanhText;
     
     @FXML
     private void switchToChiNhanh() throws IOException, SQLException {
@@ -75,5 +88,31 @@ public class ChiNhanhController implements Initializable{
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
    
+    }
+    
+    public void SeacrhStaffByID() throws SQLException {
+        this.TenChiNhanhText.setText("");
+        String idChiNhanh = this.idChiNhanhText.getText();
+        List<ChiNhanh> chiNhanh = ChiNhanhService.GetChiNhanhByID(idChiNhanh);
+        this.id.setCellValueFactory(new PropertyValueFactory<ChiNhanh, Integer>("id"));
+        this.diachi.setCellValueFactory(new PropertyValueFactory<ChiNhanh, String>("DiaChi"));
+        this.listChiNhanh.setItems(FXCollections.observableArrayList(chiNhanh));
+    }
+    
+    public void addChiNhanh() throws IOException{
+        String name = this.TenChiNhanhText.getText();
+        ChiNhanhService s = new ChiNhanhService();
+        try {
+            s.addChiNhanh(name);
+            MessageBox.getBox("Question", "Thêm chi nhánh thành công!!!", 
+                    Alert.AlertType.INFORMATION).show();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+            MessageBox.getBox("Question", "Thêm chi nhánh thất bại!!!", 
+                    Alert.AlertType.ERROR).show();
+        }
+        App.setRoot("ChiNhanh");
+        
+        
     }
 }
