@@ -37,7 +37,7 @@ public class ChiNhanhService {
         return listchinhanh;
     }
     
-    public static List<ChiNhanh> GetChiNhanhByID(String ID) throws SQLException{
+    public static ChiNhanh GetChiNhanhByID(String ID) throws SQLException{
         List<ChiNhanh> listChiNhanh = new ArrayList<>();
         try (Connection conn = JdbcUtils.getConn()) {
             String sql = "SELECT * FROM tblchinhanh";
@@ -53,18 +53,19 @@ public class ChiNhanhService {
                ChiNhanh n = new ChiNhanh(rs.getInt("id"), rs.getString("DiaChi"));
                listChiNhanh.add(n);
             }
-            return listChiNhanh;
+            ChiNhanh a = listChiNhanh.get(0);
+            return a;
     }
     }
     
     public boolean addChiNhanh(String DiaChi) throws SQLException{
-        
+  
         try(Connection conn = JdbcUtils.getConn()){
-            int dem = 1;
+            int dem = 0;
             Statement stm1 = conn.createStatement();
            
             ResultSet rs = stm1.executeQuery("SELECT * FROM tblchinhanh");
-            while(rs.next()) dem++;
+            while(rs.next()){ dem = rs.getInt("id")+1;}
             String sql = "insert into tblchinhanh values(?,?)";
             PreparedStatement stm = conn.prepareCall(sql);
             int id = dem;

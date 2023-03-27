@@ -32,6 +32,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author DELL
  */
 public class KhachHangController implements Initializable {
+
+    /**
+     * @return the listKhachHang
+     */
+    public TableView<KhachHang> getListKhachHang() {
+        return listKhachHang;
+    }
     @FXML
     private TableView<KhachHang> listKhachHang;
     
@@ -93,7 +100,7 @@ public class KhachHangController implements Initializable {
             this.TenKhach.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("TenKhach"));
             this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("DiaChi"));
             this.DienThoai.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("DienThoai"));
-            this.listKhachHang.setItems(FXCollections.observableArrayList(khachhang));           
+            this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));           
         } catch (SQLException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,7 +115,7 @@ public class KhachHangController implements Initializable {
         this.TenKhach.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("TenKhach"));
         this.DienThoai.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DienThoai"));
         this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DiaChi"));
-        this.listKhachHang.setItems(FXCollections.observableArrayList(khachhang));
+        this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));
     }
     
     public void SeacrhCustomerByName() throws SQLException {
@@ -119,7 +126,7 @@ public class KhachHangController implements Initializable {
         this.TenKhach.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("TenKhach"));
         this.DienThoai.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DienThoai"));
         this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DiaChi"));
-        this.listKhachHang.setItems(FXCollections.observableArrayList(khachhang));
+        this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));
         
     }
     

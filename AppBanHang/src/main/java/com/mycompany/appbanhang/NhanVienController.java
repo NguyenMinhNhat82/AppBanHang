@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.appbanhang;
+
 import com.company.utils.MessageBox;
 import com.company.pojo.ChiNhanh;
 import com.company.pojo.NhanVien;
+import com.company.pojo.UserSession;
 import com.company.service.ChiNhanhService;
 import com.company.service.NhanVienService;
 import java.io.IOException;
@@ -34,6 +36,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -73,24 +76,22 @@ public class NhanVienController implements Initializable {
 
     @FXML
     private TextField nameNhanVien;
-    
+
     @FXML
     private TextField GioiTinhText;
-    
+
     @FXML
     private TextField DiaChiText;
-    
+
     @FXML
     private TextField SoDienThoaihText;
-        @FXML
+    @FXML
     private DatePicker NgaySinhText;
-    
+
     @FXML
     private TextField idNhanVien;
-        @FXML
+    @FXML
     private ComboBox<ChiNhanh> ListChiNhanh;
-        
-
 
     @FXML
     private void switchToChiNhanh() throws IOException, SQLException {
@@ -119,8 +120,7 @@ public class NhanVienController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-            
+
         try {
             List<NhanVien> nhanvien = NhanVienService.GetNhanVien();
             this.id.setCellValueFactory(new PropertyValueFactory<NhanVien, String>("MaNV"));
@@ -151,7 +151,7 @@ public class NhanVienController implements Initializable {
         this.IDChiNhanh.setCellValueFactory(new PropertyValueFactory<NhanVien, Integer>("IDChiNhanh"));
         this.listNhanVien.setItems(FXCollections.observableArrayList(nhanVien));
     }
-    
+
     public void SeacrhStaffByName() throws SQLException {
         this.idNhanVien.setText("");
         String nameNhanVien = this.nameNhanVien.getText();
@@ -165,8 +165,8 @@ public class NhanVienController implements Initializable {
         this.IDChiNhanh.setCellValueFactory(new PropertyValueFactory<NhanVien, Integer>("IDChiNhanh"));
         this.listNhanVien.setItems(FXCollections.observableArrayList(nhanVien));
     }
-    
-    public void addNhanVien() throws IOException{
+
+    public void addNhanVien() throws IOException {
         String sdt = this.SoDienThoaihText.getText();
         String name = this.nameNhanVien.getText();
         String GioiTinh = this.GioiTinhText.getText();
@@ -175,20 +175,86 @@ public class NhanVienController implements Initializable {
         Instant instant = Instant.from(dateIns.atStartOfDay(ZoneId.systemDefault()));
         Date NgaySinh = Date.from(instant);
         int idChiNhanh = ListChiNhanh.getSelectionModel().getSelectedItem().getId();
-        
+
         NhanVienService s = new NhanVienService();
         try {
             s.addNhanVien(name, GioiTinh, DiaChi, sdt, NgaySinh, idChiNhanh);
-            MessageBox.getBox("Question", "Thêm nhân viên thành công!!!", 
+            MessageBox.getBox("Nhân viên", "Thêm nhân viên thành công!!!",
                     Alert.AlertType.INFORMATION).show();
         } catch (SQLException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
-            MessageBox.getBox("Question", "Thêm nhân viên thất bại!!!", 
+            MessageBox.getBox("Nhân viên", "Thêm nhân viên thất bại!!!",
                     Alert.AlertType.ERROR).show();
         }
         App.setRoot("NhanVien");
-        
-        
-    }
-}
 
+    }
+    String IDTextBox = null;
+
+    @FXML
+    public void g(MouseEvent event) throws SQLException {
+        NhanVien a = this.listNhanVien.getSelectionModel().getSelectedItem();
+        this.nameNhanVien.setText(a.getTenNV());
+        this.idNhanVien.setText(a.getMaNV());
+        this.GioiTinhText.setText(a.getGioiTinh());
+        this.DiaChiText.setText(a.getDiaChi());
+        this.SoDienThoaihText.setText(a.getDienThoai());
+        this.NgaySinhText.setValue(LocalDate.parse(a.getNgaySinh().toString()));
+        this.ListChiNhanh.setValue(ChiNhanhService.GetChiNhanhByID(Integer.toString(a.getIDChiNhanh())));
+        IDTextBox = a.getMaNV();
+    }
+
+    public void UpdateNhanVien() throws IOException {
+        try {
+
+            String id = this.idNhanVien.getText();
+
+            if (id.equals(IDTextBox)) {
+                String sdt = this.SoDienThoaihText.getText();
+                String name = this.nameNhanVien.getText();
+                String GioiTinh = this.GioiTinhText.getText();
+                String DiaChi = this.DiaChiText.getText();
+                LocalDate dateIns = this.NgaySinhText.getValue();
+                Instant instant = Instant.from(dateIns.atStartOfDay(ZoneId.systemDefault()));
+                Date NgaySinh = Date.from(instant);
+                int idChiNhanh = ListChiNhanh.getSelectionModel().getSelectedItem().getId();
+                NhanVienService.updateNhanVien(id, name, GioiTinh, DiaChi, sdt, NgaySinh, idChiNhanh);
+                MessageBox.getBox("Nhân viên", "Sửa nhân viên thành công!!!",
+                        Alert.AlertType.INFORMATION).show();
+            } else {
+                MessageBox.getBox("Nhân viên", " Không được sửa mã nhân viên!!!",
+                        Alert.AlertType.ERROR).show();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+            MessageBox.getBox("Nhân viên", "Sửa nhân viên thất bại!!!",
+                    Alert.AlertType.ERROR).show();
+
+        }
+        App.setRoot("NhanVien");
+
+    }
+
+    public void deleteNhanVien() throws IOException {
+        String IdNhanVienDel = this.idNhanVien.getText();
+
+        if (!UserSession.getUserID().trim().toLowerCase().equals(IdNhanVienDel.trim().toLowerCase())) {
+            try {
+                NhanVienService.deleteNhanVien(this.idNhanVien.getText());
+                MessageBox.getBox("Nhân viên", "Xóa nhân viên thành công!!!",
+                        Alert.AlertType.INFORMATION).show();
+            } catch (SQLException ex) {
+                Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+                MessageBox.getBox("Nhân viên", "Xóa nhân viên thất bại!!!",
+                        Alert.AlertType.ERROR).show();
+                ;
+            }
+            App.setRoot("NhanVien");
+
+        } else {
+            MessageBox.getBox("Nhân viên", "Không được xóa nhân viên mà đang đăng nhập!!!",
+                    Alert.AlertType.ERROR).show();
+        }
+    }
+
+}

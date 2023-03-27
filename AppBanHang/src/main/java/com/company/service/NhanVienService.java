@@ -66,6 +66,7 @@ public class NhanVienService {
                NhanVien n = new NhanVien(rs.getString("MaNhanVien"), rs.getString("TenNhanVien"),rs.getString("GioiTinh"),rs.getString("DiaChi"),rs.getString("DienThoai"),rs.getDate("NgaySinh"),rs.getInt("idChiNhanh"),rs.getString("Password"));
                listNhanVien.add(n);
             }
+            NhanVien a = listNhanVien.get(0);
             return listNhanVien;
     }
     }
@@ -89,17 +90,17 @@ public class NhanVienService {
     }
     }
     
-    public boolean addNhanVien(String name,String GioiTinh,String DiaChi,String SDT,Date NgaySinh,int IDChiNhanh) throws SQLException{
+    public static boolean addNhanVien(String name,String GioiTinh,String DiaChi,String SDT,Date NgaySinh,int IDChiNhanh) throws SQLException{
         
         try(Connection conn = JdbcUtils.getConn()){
-            int dem = 1;
+            
             Statement stm1 = conn.createStatement();
-           
+            String idNV = null;
             ResultSet rs = stm1.executeQuery("SELECT * FROM tblnhanvien");
-            while(rs.next()) dem++;
+            while(rs.next()) { idNV = Integer.toString((Integer.parseInt(rs.getString("MaNhanVien").substring(2))+1));  }
             String sql = "insert into tblnhanvien values(?,?,?,?,?,?,?,?)";
             PreparedStatement stm = conn.prepareCall(sql);
-            String id = "NV"+ Integer.toString(dem);
+            String id = "NV"+ idNV;
             stm.setString(1,id);
             stm.setString(2,name);
             stm.setString(3,GioiTinh);
@@ -115,4 +116,33 @@ public class NhanVienService {
         }
     }
     
+    public static boolean updateNhanVien(String id, String ten, String GioiTinh,String Diachi,String sdt,Date ngaysinh,int idChiNhanh ) throws SQLException{
+        
+        try(Connection conn = JdbcUtils.getConn()){
+            String sql = "update tblnhanvien set TenNhanVien = ? , GioiTinh = ?, DiaChi = ?, DienThoai = ?,NgaySinh = ? , idChiNhanh = ? where  MaNhanVien = ?";
+            PreparedStatement stm = conn.prepareCall(sql);        
+             stm.setString(1,ten);
+            stm.setString(2,GioiTinh);
+            stm.setString(3,Diachi);
+            stm.setString(4,sdt);
+             Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String s = formatter.format(ngaysinh);
+            stm.setString(5,s);
+            stm.setString(6,Integer.toString(idChiNhanh));
+            stm.setString(7,id);
+            int r  = stm.executeUpdate();
+            return r >0;           
+        }
+    }
+    public static boolean deleteNhanVien(String ID) throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()) {
+            String sql = "DELETE FROM tblnhanvien WHERE MaNhanVien=?";
+            PreparedStatement stm = conn.prepareCall(sql);
+            stm.setString(1, ID);
+            
+            int t = stm.executeUpdate();
+            
+            return t > 0;
+        }
+    }
 }

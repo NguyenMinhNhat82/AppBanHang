@@ -93,7 +93,8 @@ public class ChiNhanhController implements Initializable{
     public void SeacrhStaffByID() throws SQLException {
         this.TenChiNhanhText.setText("");
         String idChiNhanh = this.idChiNhanhText.getText();
-        List<ChiNhanh> chiNhanh = ChiNhanhService.GetChiNhanhByID(idChiNhanh);
+        List<ChiNhanh> chiNhanh = new ArrayList<ChiNhanh>();
+        chiNhanh.add((ChiNhanhService.GetChiNhanhByID(idChiNhanh)));
         this.id.setCellValueFactory(new PropertyValueFactory<ChiNhanh, Integer>("id"));
         this.diachi.setCellValueFactory(new PropertyValueFactory<ChiNhanh, String>("DiaChi"));
         this.listChiNhanh.setItems(FXCollections.observableArrayList(chiNhanh));

@@ -79,7 +79,6 @@ public class KhachHangService {
         try(Connection conn = JdbcUtils.getConn()){
             int dem = 1;
             Statement stm1 = conn.createStatement();
-           
             ResultSet rs = stm1.executeQuery("SELECT * FROM tblkhach");
             while(rs.next()) dem++;
             String sql = "insert into tblkhach values(?,?,?,?)";

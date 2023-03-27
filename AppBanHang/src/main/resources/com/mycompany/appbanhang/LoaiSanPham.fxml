@@ -20,8 +20,8 @@
             <Menu mnemonicParsing="false" text="Danh mục">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#switchToLoaiSanPham" text="Loại sản phẩm" />
-                  <MenuItem mnemonicParsing="false" onMenuValidation="#switchToNhanVien" text="Nhân Viên" />
-                  <MenuItem mnemonicParsing="false" onMenuValidation="#switchToKhachHang" text="Khách Hàng" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToNhanVien" text="Nhân Viên" />
+                  <MenuItem mnemonicParsing="false" onAction="#switchToKhachHang" text="Khách Hàng" />
                   <MenuItem mnemonicParsing="false" onAction="#switchToSanPham" text="Sản phẩm" />
                   <MenuItem mnemonicParsing="false" onAction="#switchToChiNhanh" text="Chi nhánh" />
                </items>
