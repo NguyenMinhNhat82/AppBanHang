@@ -33,7 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class SanPhamController implements Initializable{
     @FXML
-    private TableView<Hang> listSanPham;
+    public TableView<Hang> listSanPham;
     
     
     @FXML

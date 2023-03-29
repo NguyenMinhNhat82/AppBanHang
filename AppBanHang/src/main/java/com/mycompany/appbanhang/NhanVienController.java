@@ -92,6 +92,10 @@ public class NhanVienController implements Initializable {
     private TextField idNhanVien;
     @FXML
     private ComboBox<ChiNhanh> ListChiNhanh;
+    
+    
+ 
+    
 
     @FXML
     private void switchToChiNhanh() throws IOException, SQLException {

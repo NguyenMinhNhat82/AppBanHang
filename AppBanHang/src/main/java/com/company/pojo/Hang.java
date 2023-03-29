@@ -4,11 +4,29 @@
  */
 package com.company.pojo;
 
+import com.company.service.KhuyenMaiService;
+import java.sql.SQLException;
+import java.util.Date;
+
 /**
  *
  * @author DELL
  */
 public class Hang {
+
+    /**
+     * @return the soLuongBan
+     */
+    public int getSoLuongBan() {
+        return soLuongBan;
+    }
+
+    /**
+     * @param soLuongBan the soLuongBan to set
+     */
+    public void setSoLuongBan(int soLuongBan) {
+        this.soLuongBan = soLuongBan;
+    }
 
     /**
      * @return the maHang
@@ -142,6 +160,13 @@ public class Hang {
     public void setDonViTinh(int IDDonViTinh) {
         this.DonViTinh = IDDonViTinh;
     }
+
+    @Override
+    public String toString() {
+        return this.TenHang;
+    }
+    
+    
     private String MaHang;
     private String TenHang;
     private String MaLoaiSanPham;
@@ -152,6 +177,13 @@ public class Hang {
     private String GhiChu;
     private int IdKhuyenMai;
     private int  DonViTinh;
+    
+    
+    
+    
+    private int GiaGiam;
+    private int soLuongBan;
+    private double TongGiaTien;
 
     public Hang() {
     }
@@ -168,6 +200,33 @@ public class Hang {
         this.IdKhuyenMai = IDKhuyenMai;
         this.DonViTinh = IDDonViTinh;
     }
+
+    /**
+     * @return the TongGiaTien
+     */
+    public double getTongGiaTien() throws SQLException {
+        return ((this.DonGiaBan) * this.getSoLuongBan()-this.getGiaGiam());
+    }
+
+    /**
+     * @param GiaGiam the GiaGiam to set
+     */
+    public void setGiaGiam(int GiaGiam) {
+        this.GiaGiam = GiaGiam;
+    }
+    
+     public int getGiaGiam() throws SQLException {
+        var KM = KhuyenMaiService.KhuyenMaiByID(Integer.toString(this.IdKhuyenMai));
+        Date today = new Date();
+        if(KM.getNgayBatDau().before(today) && KM.getNgayKetThuc().after(today))
+            return KM.getGiaTri()*this.soLuongBan;
+        else return 0;
+    }
+
+    /**
+     * @param TongGiaTien the TongGiaTien to set
+     */
+  
     
     
     

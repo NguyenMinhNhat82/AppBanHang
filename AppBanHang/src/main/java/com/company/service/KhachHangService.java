@@ -28,7 +28,7 @@ public class KhachHangService {
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM tblkhach");
             while (rs.next()) {
-                KhachHang c = new KhachHang(rs.getString("MaKhach"), rs.getString("TenKhach"),rs.getString("DiaChi"),rs.getString("DienThoai"));
+                KhachHang c = new KhachHang(rs.getString("MaKhach"), rs.getString("TenKhach"),rs.getString("DiaChi"),rs.getString("DienThoai"),rs.getDate("NgaySinh"));
                 listkhachhang.add(c);
             }
         }
@@ -48,7 +48,7 @@ public class KhachHangService {
             
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-               KhachHang n = new KhachHang(rs.getString("MaKhach"), rs.getString("TenKhach"),rs.getString("DiaChi"),rs.getString("DienThoai"));
+               KhachHang n = new KhachHang(rs.getString("MaKhach"), rs.getString("TenKhach"),rs.getString("DiaChi"),rs.getString("DienThoai"),rs.getDate("NgaySinh"));
                listKhachHang.add(n);
             }
             return listKhachHang;
@@ -67,27 +67,30 @@ public class KhachHangService {
             
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-               KhachHang n = new KhachHang(rs.getString("MaKhach"), rs.getString("TenKhach"),rs.getString("DiaChi"),rs.getString("DienThoai"));
+               KhachHang n = new KhachHang(rs.getString("MaKhach"), rs.getString("TenKhach"),rs.getString("DiaChi"),rs.getString("DienThoai"),rs.getDate("NgaySinh"));
                listKhachHang.add(n);
             }
             return listKhachHang;
     }
     }
     
-    public boolean addKhachHang(String name,String Sdt,String DiaChi) throws SQLException{
+    public boolean addKhachHang(String name,String Sdt,String DiaChi,Date NgaySinh) throws SQLException{
         
         try(Connection conn = JdbcUtils.getConn()){
             int dem = 1;
             Statement stm1 = conn.createStatement();
             ResultSet rs = stm1.executeQuery("SELECT * FROM tblkhach");
             while(rs.next()) dem++;
-            String sql = "insert into tblkhach values(?,?,?,?)";
+            String sql = "insert into tblkhach values(?,?,?,?,?)";
             PreparedStatement stm = conn.prepareCall(sql);
-            String id = "KH"+ Integer.toString(dem);
+            String id = Integer.toString(dem);
             stm.setString(1,id);
             stm.setString(2,name);
             stm.setString(3,Sdt);
             stm.setString(4,DiaChi);
+            Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String s = formatter.format(NgaySinh);
+            stm.setString(5,s);
             int r  = stm.executeUpdate();
             return r >0;           
         }

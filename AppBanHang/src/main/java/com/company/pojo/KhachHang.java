@@ -4,22 +4,41 @@
  */
 package com.company.pojo;
 
+import java.util.Date;
+
 /**
  *
  * @author DELL
  */
 public class KhachHang {
+
+    /**
+     * @return the NgaySinh
+     */
+    public Date getNgaySinh() {
+        return NgaySinh;
+    }
+
+    /**
+     * @param NgaySinh the NgaySinh to set
+     */
+    public void setNgaySinh(Date NgaySinh) {
+        this.NgaySinh = NgaySinh;
+    }
     private String MaKhach;
     private String TenKhach;
     private String DiaChi;
     private String DienThoai;
+    private Date NgaySinh;
+    
     public KhachHang(){} 
 
-    public KhachHang(String maKH, String TenKhachhang, String DiaChi, String DienThoai) {
+    public KhachHang(String maKH, String TenKhachhang, String DiaChi, String DienThoai,Date NgaySinh) {
         this.MaKhach = maKH;
         this.TenKhach = TenKhachhang;
         this.DiaChi = DiaChi;
         this.DienThoai = DienThoai;
+        this.NgaySinh = NgaySinh;
     }
     
    

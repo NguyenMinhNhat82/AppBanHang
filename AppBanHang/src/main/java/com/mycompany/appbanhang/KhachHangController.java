@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,33 +42,38 @@ public class KhachHangController implements Initializable {
     }
     @FXML
     private TableView<KhachHang> listKhachHang;
-    
-    
+
     @FXML
     private TableColumn<KhachHang, String> MaKhach;
-    
+
     @FXML
     private TableColumn<KhachHang, String> TenKhach;
 
     @FXML
     private TableColumn<KhachHang, String> DiaChi;
-    
+
     @FXML
     private TableColumn<KhachHang, String> DienThoai;
     
+     @FXML
+    private TableColumn<KhachHang, Date> NgaySinh;
+
     @FXML
     private TextField MaKhachHang;
-    
+
     @FXML
     private TextField TenKhachHang;
-    
+
     @FXML
     private TextField DiaChiText;
-    
+
     @FXML
     private TextField DienThoaiText;
+    
+      @FXML
+    private DatePicker NgaySinhKH;
 
-   @FXML
+    @FXML
     private void switchToChiNhanh() throws IOException, SQLException {
         App.setRoot("ChiNhanh");
     }
@@ -91,22 +97,27 @@ public class KhachHangController implements Initializable {
     private void switchToSanPham() throws IOException, SQLException {
         App.setRoot("SanPham");
     }
-    
+
+    private void addToTableList() throws SQLException {
+        List<KhachHang> khachhang = KhachHangService.GetKhachHang();
+        this.MaKhach.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("MaKhach"));
+        this.TenKhach.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("TenKhach"));
+        this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DiaChi"));
+        this.DienThoai.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DienThoai"));
+        this.NgaySinh.setCellValueFactory(new PropertyValueFactory<KhachHang, Date>("NgaySinh"));
+        this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            List<KhachHang> khachhang = KhachHangService.GetKhachHang();
-            this.MaKhach.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("MaKhach"));
-            this.TenKhach.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("TenKhach"));
-            this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("DiaChi"));
-            this.DienThoai.setCellValueFactory(new PropertyValueFactory<KhachHang,String>("DienThoai"));
-            this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));           
+            this.addToTableList();
         } catch (SQLException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+
     }
-    
+
     public void SeacrhCustomerByID() throws SQLException {
         this.TenKhachHang.setText("");
         String MaKhachHang = this.MaKhachHang.getText();
@@ -117,7 +128,7 @@ public class KhachHangController implements Initializable {
         this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DiaChi"));
         this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));
     }
-    
+
     public void SeacrhCustomerByName() throws SQLException {
         this.MaKhachHang.setText("");
         String TenKhachHang = this.TenKhachHang.getText();
@@ -127,25 +138,28 @@ public class KhachHangController implements Initializable {
         this.DienThoai.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DienThoai"));
         this.DiaChi.setCellValueFactory(new PropertyValueFactory<KhachHang, String>("DiaChi"));
         this.getListKhachHang().setItems(FXCollections.observableArrayList(khachhang));
-        
+
     }
-    
-    public void addKhachHang() throws IOException{
+
+    public void addKhachHang() throws IOException, SQLException {
         String name = this.TenKhachHang.getText();
         String dienthoai = this.DienThoaiText.getText();
         String DiaChi = this.DiaChiText.getText();
+        LocalDate dateIns = this.NgaySinhKH.getValue();
+        Instant instant = Instant.from(dateIns.atStartOfDay(ZoneId.systemDefault()));
+        Date birth = Date.from(instant);
         KhachHangService s = new KhachHangService();
         try {
-            s.addKhachHang(name, dienthoai, DiaChi);
-            MessageBox.getBox("Question", "Thêm khách hàng thành công!!!", 
+            s.addKhachHang(name, dienthoai, DiaChi,birth);
+            MessageBox.getBox("Question", "Thêm khách hàng thành công!!!",
                     Alert.AlertType.INFORMATION).show();
         } catch (SQLException ex) {
             Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
-            MessageBox.getBox("Question", "Thêm khách hàng thất bại!!!", 
+            MessageBox.getBox("Question", "Thêm khách hàng thất bại!!!",
                     Alert.AlertType.ERROR).show();
         }
-        App.setRoot("KhachHang");
-        
-        
+        this.addToTableList();
+        this.listKhachHang.refresh();
+
     }
 }
