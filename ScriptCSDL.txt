@@ -1,0 +1,195 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema quanlybanhang
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema quanlybanhang
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `quanlybanhang` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+USE `quanlybanhang` ;
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblchinhanh`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblchinhanh` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `DiaCHi` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblnhanvien`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblnhanvien` (
+  `MaNhanVien` VARCHAR(50) NOT NULL,
+  `TenNhanVien` VARCHAR(50) NOT NULL,
+  `GioiTinh` VARCHAR(10) NOT NULL,
+  `DiaChi` VARCHAR(50) NOT NULL,
+  `DienThoai` VARCHAR(15) NOT NULL,
+  `NgaySinh` DATETIME NOT NULL,
+  `idChiNhanh` INT NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`MaNhanVien`),
+  INDEX `idChiNhanh` (`idChiNhanh` ASC) VISIBLE,
+  CONSTRAINT `tblnhanvien_ibfk_1`
+    FOREIGN KEY (`idChiNhanh`)
+    REFERENCES `quanlybanhang`.`tblchinhanh` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblkhach`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblkhach` (
+  `MaKhach` VARCHAR(50) NOT NULL,
+  `TenKhach` VARCHAR(50) NOT NULL,
+  `DiaChi` VARCHAR(50) NOT NULL,
+  `DienThoai` VARCHAR(50) NOT NULL,
+  `NgaySinh` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`MaKhach`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblhdban`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblhdban` (
+  `MaHDBan` VARCHAR(30) NOT NULL,
+  `MaNhanVien` VARCHAR(50) NOT NULL,
+  `NgayBan` DATETIME NOT NULL,
+  `MaKhach` VARCHAR(50) NOT NULL,
+  `TongTien` DOUBLE NOT NULL,
+  `IdChiNhanh` INT NOT NULL,
+  PRIMARY KEY (`MaHDBan`),
+  INDEX `MaNhanVien` (`MaNhanVien` ASC) VISIBLE,
+  INDEX `MaKhach` (`MaKhach` ASC) VISIBLE,
+  INDEX `IdChiNhanh` (`IdChiNhanh` ASC) VISIBLE,
+  CONSTRAINT `tblhdban_ibfk_1`
+    FOREIGN KEY (`MaNhanVien`)
+    REFERENCES `quanlybanhang`.`tblnhanvien` (`MaNhanVien`),
+  CONSTRAINT `tblhdban_ibfk_2`
+    FOREIGN KEY (`MaKhach`)
+    REFERENCES `quanlybanhang`.`tblkhach` (`MaKhach`),
+  CONSTRAINT `tblhdban_ibfk_3`
+    FOREIGN KEY (`IdChiNhanh`)
+    REFERENCES `quanlybanhang`.`tblchinhanh` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblloaisanpham`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblloaisanpham` (
+  `MaLoaiSanPham` VARCHAR(50) NOT NULL,
+  `TenLoaiSanPham` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`MaLoaiSanPham`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblkhuyenmai`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblkhuyenmai` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `NgayBatDau` DATETIME NOT NULL,
+  `NgayKetThuc` DATETIME NOT NULL,
+  `GiaTri` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tbldonvitinh`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tbldonvitinh` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `Value` CHAR(10) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblhang`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblhang` (
+  `MaHang` VARCHAR(50) NOT NULL,
+  `TenHang` VARCHAR(50) NOT NULL,
+  `MaLoaiSanPham` VARCHAR(50) NOT NULL,
+  `SoLuong` DOUBLE NOT NULL,
+  `DonGiaNhap` DOUBLE NOT NULL,
+  `DonGiaBan` DOUBLE NOT NULL,
+  `Anh` VARCHAR(200) NOT NULL,
+  `GhiChu` VARCHAR(200) NULL DEFAULT NULL,
+  `IdKhuyenMai` INT NULL DEFAULT NULL,
+  `DonViTinh` INT NOT NULL,
+  PRIMARY KEY (`MaHang`),
+  INDEX `MaLoaiSanPham` (`MaLoaiSanPham` ASC) VISIBLE,
+  INDEX `IdKhuyenMai` (`IdKhuyenMai` ASC) VISIBLE,
+  INDEX `DonViTinh` (`DonViTinh` ASC) VISIBLE,
+  CONSTRAINT `tblhang_ibfk_1`
+    FOREIGN KEY (`MaLoaiSanPham`)
+    REFERENCES `quanlybanhang`.`tblloaisanpham` (`MaLoaiSanPham`),
+  CONSTRAINT `tblhang_ibfk_2`
+    FOREIGN KEY (`IdKhuyenMai`)
+    REFERENCES `quanlybanhang`.`tblkhuyenmai` (`id`),
+  CONSTRAINT `tblhang_ibfk_3`
+    FOREIGN KEY (`DonViTinh`)
+    REFERENCES `quanlybanhang`.`tbldonvitinh` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `quanlybanhang`.`tblchitiethdban`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quanlybanhang`.`tblchitiethdban` (
+  `MaHDBan` VARCHAR(30) NOT NULL,
+  `MaHang` VARCHAR(50) NOT NULL,
+  `SoLuong` DOUBLE NOT NULL,
+  `DonGia` DOUBLE NOT NULL,
+  `GiamGia` DOUBLE NOT NULL,
+  `ThanhTien` DOUBLE NOT NULL,
+  PRIMARY KEY (`MaHang`, `MaHDBan`),
+  INDEX `MaHDBan` (`MaHDBan` ASC) VISIBLE,
+  CONSTRAINT `tblchitiethdban_ibfk_1`
+    FOREIGN KEY (`MaHDBan`)
+    REFERENCES `quanlybanhang`.`tblhdban` (`MaHDBan`),
+  CONSTRAINT `tblchitiethdban_ibfk_2`
+    FOREIGN KEY (`MaHang`)
+    REFERENCES `quanlybanhang`.`tblhang` (`MaHang`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
